@@ -7,3 +7,8 @@ spring:
     jdbc-url: jdbc:mysql://localhost:3306/order?serverTimeZone=UTC&CharacterEncoding=UTF-8
     username: root
     password: dydwns^^100
+  security:
+    user:
+      name: yongjun
+      password: 1234
+
