@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.lang.annotation.Repeatable;
+import java.rmi.NotBoundException;
 
 @RestControllerAdvice
 public class MainRestControllerException {
@@ -19,6 +20,7 @@ public class MainRestControllerException {
         logger.error("handleException" , e);
         ErrorResponse errorResponse = ErrorResponse
                                             .create()
+                .code(ErrorCode.SERVER_ERROR.getCode())
                                             .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                             .message(e.toString());
 
@@ -26,5 +28,21 @@ public class MainRestControllerException {
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
   }
+
+    @ExceptionHandler(NotBoundException.class)
+    protected ResponseEntity<ErrorResponse> handleNotBoundException(NotBoundException e) {
+        logger.error("handleNotBoundException" , e);
+        ErrorResponse errorResponse = ErrorResponse
+                .create()
+                .code(ErrorCode.NOT_FOUND.getCode())
+                .status(HttpStatus.NOT_FOUND.value())
+                .message(e.toString());
+
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+
+    }
+
+
 
 }

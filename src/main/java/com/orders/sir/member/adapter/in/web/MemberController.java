@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.rmi.NotBoundException;
 import java.util.List;
 
 /**
@@ -24,7 +25,14 @@ public class MemberController {
     private final MemberUseCase memberUseCase;
 
     @GetMapping("members")
-    public ResponseEntity<List<MemberDomain>> findMemberList() {
+    public ResponseEntity<List<MemberDomain>> findMemberList() throws Exception {
+        if(true) {
+            throw  new NotBoundException();
+        }
+
+
+
+
         return memberUseCase.findMemberList();
     }
     @GetMapping("members/{memberId}")
