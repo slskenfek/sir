@@ -22,7 +22,7 @@ public class SecurityWebConfig {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http)throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .anyRequest().authenticated()

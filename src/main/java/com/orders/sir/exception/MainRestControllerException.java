@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.lang.annotation.Repeatable;
 import java.rmi.NotBoundException;
@@ -24,7 +25,6 @@ public class MainRestControllerException {
                                             .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                             .message(e.toString());
 
-
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
   }
@@ -38,11 +38,21 @@ public class MainRestControllerException {
                 .status(HttpStatus.NOT_FOUND.value())
                 .message(e.toString());
 
-
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 
     }
 
+    @ExceptionHandler(HttpClientErrorException.BadRequest.class)
+    protected ResponseEntity<ErrorResponse> badRequestException(HttpClientErrorException.BadRequest e) {
+        logger.error("badRequestException" , e);
+        ErrorResponse errorResponse = ErrorResponse
+                .create()
+                .code(ErrorCode.BAD_REQUEST.getCode())
+                .status(HttpStatus.NOT_FOUND.value())
+                .message(e.toString());
 
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+
+    }
 
 }

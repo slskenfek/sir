@@ -18,7 +18,6 @@ public class MemberMapper {
                 .memberAddress(entity.getMemberAddress())
                 .memberName(entity.getMemberName())
                 .build();
-
     }
 
 }

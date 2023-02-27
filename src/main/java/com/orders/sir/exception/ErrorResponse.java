@@ -33,7 +33,4 @@ public class ErrorResponse {
         return this;
     }
 
-
-
-
 }
