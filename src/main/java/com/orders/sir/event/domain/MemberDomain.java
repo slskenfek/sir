@@ -1,12 +1,10 @@
-package com.orders.sir.member.domain;
+package com.orders.sir.event.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -42,20 +40,38 @@ public class MemberDomain {
      * @param contents
      * @return
      */
-    public static ResponseEntity selectContent(Object contents) {
+    public static <T> ResponseEntity selectContent(T contents) {
         return ResponseEntity.ok().body(contents);
     }
 
     /**
-     * 컨텐츠 리스트 조회
-     * @param contents
+     * 맴버 전체 조회
+     * @param memberList
      * @return
      */
-    public static ResponseEntity selectListContent(List contents) {
-        return ResponseEntity.ok().body(contents);
+
+    public static  List<MemberDomain> selectListMember(List<MemberDomain> memberList) {
+        return memberList;
     }
 
+    /**
+     * 컨텐츠 추가
+     * @param value
+     * @return
+     * @param <T>
+     */
     public static <T> MemberDomain saveContent(T value) {
         return (MemberDomain) value;
+    }
+
+    /**
+     * 컨텐츠 변경
+     *
+     * @param updateData
+     * @return
+     * @param <T>
+     */
+    public static <T> MemberDomain updateContent(Long seq , T updateData) {
+        return null;
     }
 }

@@ -1,6 +1,6 @@
-package com.orders.sir.member.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence;
 
-import com.orders.sir.member.domain.MemberDomain;
+import com.orders.sir.event.domain.MemberDomain;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class MemberMapper {
+public class MemberModel {
 
     public MemberDomain toDomain(MemberEntity entity) {
         return MemberDomain.builder()

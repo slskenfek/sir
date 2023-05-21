@@ -1,12 +1,10 @@
-package com.orders.sir.member.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 @Getter
 @Setter
