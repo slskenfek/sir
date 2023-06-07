@@ -55,4 +55,17 @@ public class MainRestControllerException {
 
     }
 
+    @ExceptionHandler(ExceptionCustom.ApiException.class)
+    protected ResponseEntity<ErrorResponse> apiException(HttpClientErrorException.BadRequest e) {
+        logger.error("apiException" , e);
+        ErrorResponse errorResponse = ErrorResponse
+                .create()
+                .code(ErrorCode.API_ERROR.getCode())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(e.toString());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
 }

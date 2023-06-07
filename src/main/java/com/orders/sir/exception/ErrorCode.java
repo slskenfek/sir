@@ -8,6 +8,8 @@ public enum ErrorCode {
     BAD_REQUEST("CO01","Bad Reqeust 요청 리퀘스트 확인", 400),
     NOT_FOUND("CO02","요청된 주소가 존재하지 않습니다.", 404),
     SERVER_ERROR("CO03","서버 수행중 에러 발행", 500),
+
+    API_ERROR("CO04","API 수행중 에러 발행", 500),
     ;
 
     private String code;

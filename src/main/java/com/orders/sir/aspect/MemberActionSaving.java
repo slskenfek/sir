@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * 유저 이벤트 일어났을때 사용자 성향을 저장하는 책임
  */
-@Component
+
 @Aspect
 public class MemberActionSaving {
 

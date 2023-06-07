@@ -31,7 +31,7 @@ public class SecurityWebConfig {
         return http.build();
     }
 
-    /**@deprecated
+    /**
      * 모든 필터 해제됨
      * @return
      */

@@ -6,9 +6,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://localhost:3306/order?serverTimeZone=UTC&CharacterEncoding=UTF-8
     username: root
-    password: dydwns^^100
+    password: 1234
   security:
     user:
       name: yongjun
       password: 1234
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace #쿼리 ?값 확인
 
