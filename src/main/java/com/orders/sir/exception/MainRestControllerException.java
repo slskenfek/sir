@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.lang.annotation.Repeatable;
 import java.rmi.NotBoundException;
 
 @RestControllerAdvice
@@ -56,11 +55,24 @@ public class MainRestControllerException {
     }
 
     @ExceptionHandler(ExceptionCustom.ApiException.class)
-    protected ResponseEntity<ErrorResponse> apiException(HttpClientErrorException.BadRequest e) {
+    protected ResponseEntity<ErrorResponse> apiException(ExceptionCustom.ApiException e) {
         logger.error("apiException" , e);
         ErrorResponse errorResponse = ErrorResponse
                 .create()
                 .code(ErrorCode.API_ERROR.getCode())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(e.toString());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
+    @ExceptionHandler(ExceptionCustom.ValidationException.class)
+    protected ResponseEntity<ErrorResponse> ValidationExceptionException(ExceptionCustom.ValidationException e) {
+        logger.error("ValidationException" , e);
+        ErrorResponse errorResponse = ErrorResponse
+                .create()
+                .code(ErrorCode.VALIDATION_ERROR.getCode())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message(e.toString());
 

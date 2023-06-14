@@ -28,7 +28,7 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
 
     @Override
     public MemberDomain save(MemberEntity param) {
-     MemberEntity saveCheck = memberPersistence.save(param);
-        return memberMapper.toDomain(saveCheck);
+        MemberEntity entity = memberPersistence.save(param);
+        return memberMapper.toDomain(entity);
     }
 }

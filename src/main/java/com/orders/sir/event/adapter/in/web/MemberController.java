@@ -1,10 +1,9 @@
 package com.orders.sir.event.adapter.in.web;
 
-import com.orders.sir.event.adapter.out.persistence.MemberEntity;
 import com.orders.sir.event.application.port.in.MemberUseCasePort;
 import com.orders.sir.event.application.service.MemberService;
 import com.orders.sir.event.domain.MemberDomain;
-import com.orders.sir.event.dto.MemberParam;
+import com.orders.sir.event.dto.MemberResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,17 +50,17 @@ public class MemberController {
      */
     @GetMapping("members/{memberSeq}")
     public ResponseEntity<MemberDomain> findMember(@PathVariable final Long memberSeq) {
-        return memberUseCasePort.findMember(memberSeq);
+        return ResponseEntity.ok().body(memberUseCasePort.findMember(memberSeq));
     }
 
     /**
      * 회원 등록 수행
-     * @param param
+     * @param body
      * @return
      */
     @PostMapping("members")
-    public MemberDomain createMember(@RequestBody final MemberEntity param){
-        return memberUseCasePort.createMember(param);
+    public MemberDomain createMember(@RequestBody final MemberDomain body) throws Exception {
+        return memberUseCasePort.createMember(body);
     }
 
     /**
@@ -70,7 +69,7 @@ public class MemberController {
      * @return
      */
     @PutMapping("members/{memberSeq}")
-    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberParam param){
+    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberResponse param){
         return memberUseCasePort.updateMember(memberSeq,param);
     }
 

@@ -8,11 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SirApplicationTests {
 
-	@Autowired
+	
 	MemberController memberController;
 	@Test
 	void findMember() throws Exception {
-	System.out.println(memberController.findMemberList());
+
 	}
 
 }

@@ -14,5 +14,11 @@ public class ExceptionCustom {
         }
     }
 
+    public static class ValidationException extends RuntimeException{}
+
+
+
+
+
 
 }

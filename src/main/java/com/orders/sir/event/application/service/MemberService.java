@@ -1,12 +1,10 @@
 package com.orders.sir.event.application.service;
 
-import com.orders.sir.event.adapter.out.persistence.MemberEntity;
 import com.orders.sir.event.application.port.in.MemberUseCasePort;
 import com.orders.sir.event.application.port.out.MemberLoadPort;
 import com.orders.sir.event.domain.MemberDomain;
-import com.orders.sir.event.dto.MemberParam;
+import com.orders.sir.event.dto.MemberResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,23 +16,24 @@ public class MemberService implements MemberUseCasePort {
     @Override
     public List<MemberDomain> findMemberList() {
       List<MemberDomain> memberList = memberLoadPort.findMemberList();
-      return MemberDomain.selectListMember(memberList);
+      return memberList;
     }
 
     @Override
-    public ResponseEntity<MemberDomain> findMember(Long memberSeq) {
+    public MemberDomain findMember(Long memberSeq) {
         MemberDomain members = memberLoadPort.findMember(memberSeq);
-        return MemberDomain.selectContent(members);
+        return members;
     }
 
     @Override
-    public MemberDomain createMember(MemberEntity param) {
-        MemberDomain member = memberLoadPort.save(param);
-        return MemberDomain.saveContent(member);
+    public MemberDomain createMember(MemberDomain param) throws Exception {
+        MemberDomain member = memberLoadPort.findMember(param.getSeq());
+        member.isMemberId(member.getMemberId());
+        return memberLoadPort.save(param.entity());
     }
 
     @Override
-    public MemberDomain updateMember(Long memberSeq, MemberParam param) {
+    public MemberDomain updateMember(Long memberSeq, MemberResponse param) {
         //memberLoadPort
         return null;
     }

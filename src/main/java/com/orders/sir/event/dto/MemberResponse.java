@@ -1,5 +1,6 @@
 package com.orders.sir.event.dto;
 
+import com.orders.sir.event.adapter.out.persistence.MemberEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +11,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberParam {
+public class MemberResponse {
 
+    private Long memberSeq;
     private String memberId;
     private String memberName;
     private String memberPassword;
     private String memberAddress;
+
 
 }
