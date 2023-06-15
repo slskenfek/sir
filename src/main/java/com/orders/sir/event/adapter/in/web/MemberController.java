@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * 회원들을 관리하는 책임을 가진 컨트롤러
- */
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/members")
 public class MemberController {
 
     private MemberUseCasePort memberUseCasePort;
@@ -24,53 +21,29 @@ public class MemberController {
         this.memberUseCasePort = memberService;
     }
 
-    /**
-     * 전체 회원을 조회한다.
-     * @return
-     * @throws Exception
-     */
-    @GetMapping("members")
+
+    @GetMapping("")
     public ResponseEntity<List<MemberDomain>> findMemberList() throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(memberUseCasePort.findMemberList());
     }
-    @GetMapping("app/members")
+    @GetMapping("/app")
     public ResponseEntity findAppMemberList() throws Exception {
-      //  setMemberUseCasePort(new MemberRudService());
         return ResponseEntity.status(HttpStatus.OK).body(memberUseCasePort.findMemberList());
     }
 
-    private void setMemberUseCasePort(MemberUseCasePort memberUseCasePort) {
-        this.memberUseCasePort = memberUseCasePort;
-    }
-
-    /**
-     * 하나의 회원을 조회한다.
-     * @param memberSeq
-     * @return
-     */
-    @GetMapping("members/{memberSeq}")
+    @GetMapping("/{memberSeq}")
     public ResponseEntity<MemberDomain> findMember(@PathVariable final Long memberSeq) {
         return ResponseEntity.ok().body(memberUseCasePort.findMember(memberSeq));
     }
 
-    /**
-     * 회원 등록 수행
-     * @param body
-     * @return
-     */
-    @PostMapping("members")
+    @PostMapping("")
     public MemberDomain createMember(@RequestBody final MemberDomain body) throws Exception {
         return memberUseCasePort.createMember(body);
     }
 
-    /**
-     * 회원정보 수정
-     * @param memberSeq
-     * @return
-     */
-    @PutMapping("members/{memberSeq}")
-    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberResponse param){
-        return memberUseCasePort.updateMember(memberSeq,param);
+    @PutMapping("/{memberSeq}")
+    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberDomain body){
+        return memberUseCasePort.updateMember(memberSeq, body);
     }
 
 }

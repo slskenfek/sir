@@ -4,6 +4,7 @@ import com.orders.sir.event.application.port.out.MemberLoadPort;
 import com.orders.sir.event.domain.MemberDomain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,5 +31,16 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
     public MemberDomain save(MemberEntity param) {
         MemberEntity entity = memberPersistence.save(param);
         return memberMapper.toDomain(entity);
+    }
+
+    @Transactional
+    @Override
+    public MemberDomain update(Long memberSeq, MemberEntity entity) {
+        MemberEntity modify = memberPersistence.findById(memberSeq).orElseThrow(() -> new NoSuchFieldError("null member"));
+        modify.setMemberId(entity.getMemberId());
+        modify.setMemberAddress(entity.getMemberAddress());
+        modify.setMemberName(entity.getMemberName());
+        MemberEntity resultModify =  memberPersistence.save(modify);
+        return memberMapper.toDomain(resultModify);
     }
 }

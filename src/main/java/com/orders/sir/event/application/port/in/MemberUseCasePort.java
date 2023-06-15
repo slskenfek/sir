@@ -1,7 +1,6 @@
 package com.orders.sir.event.application.port.in;
 
 import com.orders.sir.event.domain.MemberDomain;
-import com.orders.sir.event.dto.MemberResponse;
 
 import java.util.List;
 
@@ -12,5 +11,5 @@ public interface MemberUseCasePort {
 
     MemberDomain createMember(MemberDomain param) throws Exception;
 
-    MemberDomain updateMember(Long memberSeq, MemberResponse param);
+    MemberDomain updateMember(Long memberSeq, MemberDomain param) throws Exception;
 }

@@ -10,4 +10,6 @@ public interface MemberLoadPort {
      List<MemberDomain> findMemberList();
      MemberDomain findMember(Long seq);
      MemberDomain save(MemberEntity param);
+
+     MemberDomain update(Long memberSeq, MemberEntity entity);
 }

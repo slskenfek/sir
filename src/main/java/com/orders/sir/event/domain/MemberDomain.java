@@ -5,6 +5,7 @@ import com.orders.sir.exception.ExceptionCustom;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * 즉, 로직 변경은 여기서만 이뤄질껏
  */
 @Getter
+@Setter
 @NoArgsConstructor
 public class MemberDomain {
 

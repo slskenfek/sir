@@ -3,7 +3,6 @@ package com.orders.sir.event.application.service;
 import com.orders.sir.event.application.port.in.MemberUseCasePort;
 import com.orders.sir.event.application.port.out.MemberLoadPort;
 import com.orders.sir.event.domain.MemberDomain;
-import com.orders.sir.event.dto.MemberResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +27,14 @@ public class MemberService implements MemberUseCasePort {
     @Override
     public MemberDomain createMember(MemberDomain param) throws Exception {
         MemberDomain member = memberLoadPort.findMember(param.getSeq());
-        member.isMemberId(member.getMemberId());
+        member.isMemberId(param.getMemberId());
         return memberLoadPort.save(param.entity());
     }
 
     @Override
-    public MemberDomain updateMember(Long memberSeq, MemberResponse param) {
-        //memberLoadPort
-        return null;
+    public MemberDomain updateMember(Long memberSeq, MemberDomain param) throws Exception {
+        MemberDomain member = memberLoadPort.findMember(param.getSeq());
+        member.isMemberId(param.getMemberId());
+        return memberLoadPort.update(memberSeq, param.entity());
     }
 }
