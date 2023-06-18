@@ -38,9 +38,9 @@ public class MemberDomain {
     private String memberAddress;
 
 
-    public void isMemberId(String MemberId) throws Exception {
+    public void isMemberId(String MemberId) throws ExceptionCustom.ValidationException {
         if( this.memberId.equals(MemberId)) {
-            throw new ExceptionCustom.ValidationException();
+            throw new ExceptionCustom.ValidationException("회원이 존재 합니다.");
         }
     }
 

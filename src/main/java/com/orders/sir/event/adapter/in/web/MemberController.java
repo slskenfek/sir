@@ -4,6 +4,7 @@ import com.orders.sir.event.application.port.in.MemberUseCasePort;
 import com.orders.sir.event.application.service.MemberService;
 import com.orders.sir.event.domain.MemberDomain;
 import com.orders.sir.event.dto.MemberResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +13,13 @@ import java.util.List;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/members")
 public class MemberController {
 
-    private MemberUseCasePort memberUseCasePort;
+    private final MemberUseCasePort memberUseCasePort;
 
-    public MemberController(MemberService memberService) {
-        this.memberUseCasePort = memberService;
-    }
+
 
 
     @GetMapping("")
@@ -31,18 +31,20 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.OK).body(memberUseCasePort.findMemberList());
     }
 
+
     @GetMapping("/{memberSeq}")
     public ResponseEntity<MemberDomain> findMember(@PathVariable final Long memberSeq) {
         return ResponseEntity.ok().body(memberUseCasePort.findMember(memberSeq));
     }
 
     @PostMapping("")
-    public MemberDomain createMember(@RequestBody final MemberDomain body) throws Exception {
-        return memberUseCasePort.createMember(body);
+    public ResponseEntity<MemberDomain> createMember(@RequestBody final MemberDomain body) throws Exception {
+       MemberDomain memberDomain = memberUseCasePort.createMember(body);
+        return ResponseEntity.status(HttpStatus.CREATED).body(memberDomain);
     }
 
     @PutMapping("/{memberSeq}")
-    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberDomain body){
+    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberDomain body) throws Exception {
         return memberUseCasePort.updateMember(memberSeq, body);
     }
 

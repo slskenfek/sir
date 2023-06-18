@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
@@ -23,8 +24,9 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
 
     @Override
     public MemberDomain findMember(Long seq) {
-       MemberEntity entity = memberPersistence.findById(seq).orElseThrow(NoSuchFieldError::new);
-        return memberMapper.toDomain(entity);
+       Optional<MemberEntity> entity = memberPersistence.findById(seq);
+
+        return memberMapper.toDomain(entity.orElse(null));
     }
 
     @Override
@@ -36,7 +38,9 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
     @Transactional
     @Override
     public MemberDomain update(Long memberSeq, MemberEntity entity) {
-        MemberEntity modify = memberPersistence.findById(memberSeq).orElseThrow(() -> new NoSuchFieldError("null member"));
+        MemberEntity modify = memberPersistence.findById(memberSeq).orElseThrow(
+                () -> new NoSuchFieldError("회원이 존재 하지 않습니다.")
+        );
         modify.setMemberId(entity.getMemberId());
         modify.setMemberAddress(entity.getMemberAddress());
         modify.setMemberName(entity.getMemberName());

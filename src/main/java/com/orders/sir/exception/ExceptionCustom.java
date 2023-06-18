@@ -14,7 +14,11 @@ public class ExceptionCustom {
         }
     }
 
-    public static class ValidationException extends RuntimeException{}
+    public static class ValidationException extends RuntimeException{
+        public ValidationException(String message) {
+            super(message);
+        }
+    }
 
 
 

@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 public class MemberModel {
 
     public MemberDomain toDomain(MemberEntity entity) {
+        if(entity == null) {
+            return null;
+        }
         return MemberDomain.builder()
                 .seq(entity.getSeq())
                 .memberId(entity.getMemberId())
