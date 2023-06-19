@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.in.web;
+package com.orders.sir;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;

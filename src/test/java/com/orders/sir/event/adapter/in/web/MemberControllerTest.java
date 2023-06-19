@@ -1,6 +1,6 @@
 package com.orders.sir.event.adapter.in.web;
 
-import com.orders.sir.event.application.port.in.MemberUseCasePort;
+import com.orders.sir.ApiTest;
 import com.orders.sir.event.domain.MemberDomain;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
@@ -8,16 +8,12 @@ import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 class MemberControllerTest extends ApiTest {
@@ -26,7 +22,13 @@ class MemberControllerTest extends ApiTest {
     @DisplayName("전체 회원 들고오기 테스트")
     public void findMemberList() {
     //API 요청
-
+    ExtractableResponse<Response> response =
+        RestAssured.given().log().all()
+                .when()
+                .get("/api/members")
+                .then()
+                .log().all().extract();
+    assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 
     @Test
@@ -61,6 +63,7 @@ class MemberControllerTest extends ApiTest {
     }
 
     @Test
+    @Transactional
     @DisplayName("회원 생성")
     void createMember() {
         final MemberDomain body = MemberDomain.builder()
@@ -85,12 +88,47 @@ class MemberControllerTest extends ApiTest {
     }
 
     @Test
+    @Transactional
     @DisplayName("업데이트 요청")
     void updateMember() {
+        final MemberDomain body =  MemberDomain.builder()
+                .memberId("ppTest")
+                .memberAddress("서울특별시 관악구")
+                .memberPassword("q1w2e3")
+                .memberName("세흥")
+                .build();
+        final Long memberSeq = 회원번호();
+
+        ExtractableResponse<Response> response =
+                RestAssured.given().log().all()
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .body(body)
+                        .when()
+                        .put("/api/members/" + memberSeq)
+                        .then()
+                        .log().all().extract();
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
+
+    }
+
+    @NotNull
+    private static Long 회원번호() {
+        final Long memberSeq = 4L;
+        return memberSeq;
     }
 
     @Test
+    @Transactional
     void deleteMember() {
+        final var memberSeq= 회원번호();
+
+        ExtractableResponse<Response> response =
+                RestAssured.given().log().all()
+                        .when()
+                        .delete("/api/members/" + memberSeq)
+                        .then()
+                        .log().all().extract();
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
 
     }
 

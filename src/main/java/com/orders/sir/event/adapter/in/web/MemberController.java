@@ -20,8 +20,6 @@ public class MemberController {
     private final MemberUseCasePort memberUseCasePort;
 
 
-
-
     @GetMapping("")
     public ResponseEntity<List<MemberDomain>> findMemberList() throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(memberUseCasePort.findMemberList());
