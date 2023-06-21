@@ -13,4 +13,6 @@ public interface MemberUseCasePort {
     MemberDomain createMember(MemberDomain param) throws Exception;
 
     MemberDomain updateMember(Long memberSeq, MemberDomain param) throws ExceptionCustom.ValidationException;
+
+    void deleteMember(Long memberSeq);
 }

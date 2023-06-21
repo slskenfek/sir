@@ -67,7 +67,7 @@ class MemberControllerTest extends ApiTest {
     @DisplayName("회원 생성")
     void createMember() {
         final MemberDomain body = MemberDomain.builder()
-                .memberId("testmember")
+                .memberId("kimyongjun")
                 .memberAddress("부산시 영도구")
                 .memberPassword("qwe123")
                 .memberName("홍길동")

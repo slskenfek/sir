@@ -9,6 +9,8 @@ public interface MemberLoadPort {
 
      List<MemberDomain> findMemberList();
      MemberDomain findMember(Long seq);
+     MemberDomain findMemberId(String memberId);
      MemberDomain save(MemberEntity param);
      MemberDomain update(Long memberSeq, MemberEntity entity);
+     void deleteMember(Long memberSeq);
 }

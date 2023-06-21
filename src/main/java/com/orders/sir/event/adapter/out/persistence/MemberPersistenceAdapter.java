@@ -25,7 +25,12 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
     @Override
     public MemberDomain findMember(Long seq) {
        Optional<MemberEntity> entity = memberPersistence.findById(seq);
+        return memberMapper.toDomain(entity.orElse(null));
+    }
 
+    @Override
+    public MemberDomain findMemberId(String memberId) {
+        Optional<MemberEntity> entity = memberPersistence.findByMemberId(memberId);
         return memberMapper.toDomain(entity.orElse(null));
     }
 
@@ -46,5 +51,10 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
         modify.setMemberName(entity.getMemberName());
         MemberEntity resultModify =  memberPersistence.save(modify);
         return memberMapper.toDomain(resultModify);
+    }
+
+    @Override
+    public void deleteMember(Long memberSeq) {
+        memberPersistence.deleteById(memberSeq);
     }
 }

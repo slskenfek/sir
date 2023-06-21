@@ -15,30 +15,35 @@ public class MemberService implements MemberUseCasePort {
     private final MemberLoadPort memberLoadPort;
     @Override
     public List<MemberDomain> findMemberList() {
-      List<MemberDomain> memberList = memberLoadPort.findMemberList();
-      return memberList;
+      return memberLoadPort.findMemberList();
     }
 
     @Override
     public MemberDomain findMember(Long memberSeq) {
-        MemberDomain members = memberLoadPort.findMember(memberSeq);
-        return members;
+        return memberLoadPort.findMember(memberSeq);
     }
 
     @Override
     public MemberDomain createMember(MemberDomain param) throws Exception {
-        MemberDomain member = memberLoadPort.findMember(param.getSeq());
-        if(member == null) {
-            return memberLoadPort.save(param.entity());
+        MemberDomain member = memberLoadPort.findMemberId(param.getMemberId());
+        if(member != null) {
+            member.isMemberId(param.getMemberId());
         }
-        member.isMemberId(param.getMemberId());
+
         return memberLoadPort.save(param.entity());
     }
 
     @Override
     public MemberDomain updateMember(Long memberSeq, MemberDomain param) throws ExceptionCustom.ValidationException {
-        MemberDomain member = memberLoadPort.findMember(param.getSeq());
-        member.isMemberId(param.getMemberId());
+        MemberDomain member = memberLoadPort.findMember(memberSeq);
+        if(member != null) {
+            member.isMemberId(param.getMemberId());
+        }
         return memberLoadPort.update(memberSeq, param.entity());
+    }
+
+    @Override
+    public void deleteMember(Long memberSeq) {
+         memberLoadPort.deleteMember(memberSeq);
     }
 }

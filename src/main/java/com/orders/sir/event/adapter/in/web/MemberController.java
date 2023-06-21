@@ -42,8 +42,20 @@ public class MemberController {
     }
 
     @PutMapping("/{memberSeq}")
-    public MemberDomain updateMember(@PathVariable final Long memberSeq, @RequestBody MemberDomain body) throws Exception {
-        return memberUseCasePort.updateMember(memberSeq, body);
+    public ResponseEntity<MemberDomain> updateMember(@PathVariable final Long memberSeq, @RequestBody MemberDomain body) throws Exception {
+        MemberDomain modifyMember = memberUseCasePort.updateMember(memberSeq, body);
+        return ResponseEntity.ok().body(modifyMember);
     }
+
+    @DeleteMapping("/{memberSeq}")
+    public ResponseEntity<String> deleteMember(@PathVariable final Long memberSeq) {
+       try {
+           memberUseCasePort.deleteMember(memberSeq);
+           return ResponseEntity.ok("삭제 완료 되었습니다.");
+       }catch (Exception e) {
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 성공 하였습니다.");
+       }
+    }
+
 
 }
