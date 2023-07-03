@@ -53,7 +53,7 @@ public class MemberController {
            memberUseCasePort.deleteMember(memberSeq);
            return ResponseEntity.ok("삭제 완료 되었습니다.");
        }catch (Exception e) {
-           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 성공 하였습니다.");
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패 하였습니다." + e.getMessage());
        }
     }
 
