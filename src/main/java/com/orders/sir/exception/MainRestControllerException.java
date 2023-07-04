@@ -68,7 +68,7 @@ public class MainRestControllerException {
     }
 
     @ExceptionHandler(ExceptionCustom.ValidationException.class)
-    protected ResponseEntity<ErrorResponse> ValidationExceptionException(ExceptionCustom.ValidationException e) {
+    protected ResponseEntity<ErrorResponse> validationExceptionException(ExceptionCustom.ValidationException e) {
         logger.error("ValidationException" , e);
         ErrorResponse errorResponse = ErrorResponse
                 .create()

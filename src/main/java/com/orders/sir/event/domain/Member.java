@@ -3,11 +3,6 @@ package com.orders.sir.event.domain;
 import com.orders.sir.event.adapter.out.persistence.MemberEntity;
 import com.orders.sir.exception.ExceptionCustom;
 import lombok.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 
 /**
@@ -17,11 +12,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MemberDomain {
+public class Member {
 
     @Builder
-    public MemberDomain(Long seq, String memberId, String memberName,
-                        String memberPassword, String memberAddress) {
+    public Member(Long seq, String memberId, String memberName,
+                  String memberPassword, String memberAddress) {
         this.seq = seq;
         this.memberId = memberId;
         this.memberName = memberName;

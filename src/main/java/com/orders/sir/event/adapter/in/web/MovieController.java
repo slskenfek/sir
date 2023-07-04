@@ -1,20 +1,19 @@
 package com.orders.sir.event.adapter.in.web;
 
-import com.orders.sir.event.application.port.in.MenuUserCasePort;
+import com.orders.sir.event.application.port.in.MovieUserCasePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/menu")
 @RequiredArgsConstructor
-public class MenuController {
-    private final MenuUserCasePort menuUserCasePort;
+public class MovieController {
+    private final MovieUserCasePort movieUserCasePort;
 
-    public void createMenu() {
-        menuUserCasePort.createMenu();
+    public void views() {
+        movieUserCasePort.views();
         ResponseEntity.ok().body("success");
     }
 

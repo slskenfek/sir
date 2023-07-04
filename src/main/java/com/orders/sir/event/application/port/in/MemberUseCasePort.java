@@ -1,18 +1,18 @@
 package com.orders.sir.event.application.port.in;
 
-import com.orders.sir.event.domain.MemberDomain;
+import com.orders.sir.event.domain.Member;
 import com.orders.sir.exception.ExceptionCustom;
 
 import java.util.List;
 
 public interface MemberUseCasePort {
-    List<MemberDomain> findMemberList();
+    List<Member> findMemberList();
 
-    MemberDomain findMember(Long memberSeq);
+    Member findMember(Long memberSeq);
 
-    MemberDomain createMember(MemberDomain param) throws Exception;
+    Member createMember(Member param) throws Exception;
 
-    MemberDomain updateMember(Long memberSeq, MemberDomain param) throws ExceptionCustom.ValidationException;
+    Member updateMember(Long memberSeq, Member param) throws ExceptionCustom.ValidationException;
 
     void deleteMember(Long memberSeq);
 }

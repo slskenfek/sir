@@ -3,10 +3,9 @@ package com.orders.sir.aspect;
 
 import com.orders.sir.common.Action;
 import com.orders.sir.common.MemberActionService;
-import com.orders.sir.event.domain.MemberDomain;
+import com.orders.sir.event.domain.Member;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
 
 
 /**
@@ -23,7 +22,7 @@ public class MemberActionSaving {
    }
 
    @Around("execution (* com.orders.sir.*Controller) && args(member)")
-   public void saveActionId(MemberDomain member) {
+   public void saveActionId(Member member) {
       System.out.println("테스크");
       action.saveActionId(member);
    }

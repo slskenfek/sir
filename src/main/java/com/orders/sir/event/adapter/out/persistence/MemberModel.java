@@ -1,6 +1,6 @@
 package com.orders.sir.event.adapter.out.persistence;
 
-import com.orders.sir.event.domain.MemberDomain;
+import com.orders.sir.event.domain.Member;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemberModel {
 
-    public MemberDomain toDomain(MemberEntity entity) {
+    public Member toDomain(MemberEntity entity) {
         if(entity == null) {
             return null;
         }
-        return MemberDomain.builder()
+        return Member.builder()
                 .seq(entity.getSeq())
                 .memberId(entity.getMemberId())
                 .memberPassword(entity.getMemberPassword())
