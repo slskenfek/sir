@@ -1,11 +1,12 @@
 package com.orders.sir.aspect;
 
 
-import com.orders.sir.common.Action;
-import com.orders.sir.common.MemberActionService;
-import com.orders.sir.event.domain.Member;
+import com.orders.sir.common.MemberAction;
+import com.orders.sir.common.config.MemberActionConfigItem;
+import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 /**
@@ -13,18 +14,15 @@ import org.aspectj.lang.annotation.Aspect;
  */
 
 @Aspect
-public class MemberActionSaving {
+@RequiredArgsConstructor
+public class MemberActionSaving  {
 
-   private Action action;
+   private final MemberAction memberAction;
 
-   public MemberActionSaving(MemberActionService memberActionService) {
-      this.action = memberActionService;
-   }
-
-   @Around("execution (* com.orders.sir.*Controller) && args(member)")
-   public void saveActionId(Member member) {
+   @Around("execution (* com.orders.sir.*Controller.*(..)) && args(member)")
+   public void saveAction(@RequestBody MemberActionConfigItem request) {
       System.out.println("테스크");
-      action.saveActionId(member);
+      memberAction.saveMemberAction(request);
    }
 
 }

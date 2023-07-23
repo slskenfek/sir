@@ -25,6 +25,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'io.rest-assured:rest-assured:5.3.0'
+	implementation 'org.springframework.kafka:spring-kafka'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
