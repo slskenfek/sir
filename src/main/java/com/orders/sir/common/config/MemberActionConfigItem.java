@@ -27,16 +27,4 @@ public class MemberActionConfigItem {
         this.connectionTime = connectionTime;
     }
 
-
-    public MemberActionEntity actionEntityModel() {
-      return  MemberActionEntity.builder()
-                .memberId(memberId)
-                .productId(
-                        productConfigItem.getProductId()
-                )
-                .connectionTime(connectionTime)
-                .itemTime(itemTime)
-                .build();
-
-    }
 }

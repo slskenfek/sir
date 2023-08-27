@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<tr  th:each ="user : ${member_list}">
+    <td th:text = "${user.memberName}">username</td>
+    <td th:text = "${user.memberAddress}">member_address</td>
+</tr>
+
+<input id="msg"></input>
+</body>
+
+<script>
+  $(document).ready(function(){
+            const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+
+
+                let msg = document.getElementById("msg");
+
+
+                websocket.onmessage = function(event) {
+               const data = event.data; // 받은 메시지
+                               console.log(data)
+                               var arr = data.split(":");
+
+                   const sessionId = arr[0];
+                   const message = arr[1];
+                    console.log(message)
+                if(message != null) {
+                  msg.value = (message)
+                }
+            };
+
+ })
+</script>
+</html>

@@ -13,6 +13,6 @@ public class MemberActionPersistenceAdapter implements MemberActionPort{
 
     @Override
     public void save(MemberActionConfigItem memberActionConfigItem) {
-        memberActionPersistence.save(memberActionConfigItem.actionEntityModel());
+        memberActionPersistence.save(ActionEntityModel.of(memberActionConfigItem));
     }
 }

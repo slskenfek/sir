@@ -3,6 +3,8 @@ package com.orders.sir.event.adapter.out.persistence;
 import com.orders.sir.event.application.port.out.MemberLoadPort;
 import com.orders.sir.event.domain.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +20,9 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
 
     @Override
     public List<Member> findMemberList() {
-        List memberList = memberPersistence.findAll();
-        return memberList;
+       Page<MemberEntity> memberList = memberPersistence.findAll(PageRequest.of(0,10));
+        List<MemberEntity> memberEntity = memberList.getContent();
+            return memberMapper.toListDomain(memberEntity);
     }
 
     @Override
