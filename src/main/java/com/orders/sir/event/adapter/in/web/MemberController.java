@@ -1,5 +1,6 @@
 package com.orders.sir.event.adapter.in.web;
 
+import com.orders.sir.config.AlertSocket;
 import com.orders.sir.event.application.port.in.MemberUseCasePort;
 import com.orders.sir.event.domain.Member;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -16,6 +18,8 @@ import java.util.List;
 public class MemberController {
 
     private final MemberUseCasePort memberUseCasePort;
+
+    private final AlertSocket alertSocket;
 
 
     @GetMapping("")
@@ -29,13 +33,17 @@ public class MemberController {
 
 
     @GetMapping("/{memberSeq}")
-    public ResponseEntity<Member> findMember(@PathVariable final Long memberSeq) {
+    public ResponseEntity<Member> findMember(@PathVariable final Long memberSeq) throws IOException {
         return ResponseEntity.ok().body(memberUseCasePort.findMember(memberSeq));
     }
 
     @PostMapping("")
     public ResponseEntity<Member> createMember(@RequestBody final Member body) throws Exception {
        Member member = memberUseCasePort.createMember(body);
+       if(member != null) {
+           alertSocket.sendNotication(member.getMemberName() + "회원이 등록 되었습니다.");
+       }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(member);
     }
 

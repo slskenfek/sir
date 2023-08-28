@@ -32,7 +32,6 @@ public class TextSocket extends TextWebSocketHandler {
 
       for(WebSocketSession webSocketSession : list){
               webSocketSession.sendMessage(message);
-
       }
 
     }

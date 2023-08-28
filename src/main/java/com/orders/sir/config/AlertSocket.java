@@ -4,40 +4,31 @@ import com.orders.sir.event.application.port.in.MemberUseCasePort;
 import com.orders.sir.event.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.RandomUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Component
 @Log4j2
 public class AlertSocket extends TextWebSocketHandler {
 
-    private final MemberUseCasePort memberUseCasePort;
-
     private List<WebSocketSession> list = new ArrayList<>();
 
 
-    @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        List<Member> memberList =
-                memberUseCasePort.findMemberList();
-
-        if(memberList.size() != 0) {
-       for(WebSocketSession webSocketSession : list) {
-
-            for (Member member : memberList) {
-                webSocketSession.sendMessage(new TextMessage(member.getMemberName()));
-            }
-
-         }
-       }
-
+    public void sendNotication(String msg) throws IOException {
+        for(WebSocketSession webSocketSession : list) {
+            webSocketSession.sendMessage(new TextMessage(msg));
+        }
     }
 
     @Override

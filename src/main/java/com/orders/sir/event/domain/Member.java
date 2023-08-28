@@ -10,7 +10,6 @@ import lombok.*;
  * 즉, 로직 변경은 여기서만 이뤄질껏
  */
 @Getter
-@Setter
 @NoArgsConstructor
 public class Member {
 
