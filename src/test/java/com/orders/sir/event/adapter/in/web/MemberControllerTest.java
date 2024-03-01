@@ -73,7 +73,7 @@ class MemberControllerTest extends ApiTest {
     @Test
     @DisplayName("회원 생성")
     void createMember() throws InterruptedException {
-
+        
         for(int i=0; i<10; i++) {
             final Member body2 = Member.builder()
                     .memberId("kimsu" + i)

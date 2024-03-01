@@ -22,6 +22,7 @@ public class MemberPersistenceAdapter implements MemberLoadPort{
     public List<Member> findMemberList() {
        Page<MemberEntity> memberList = memberPersistence.findAll(PageRequest.of(0,10));
         List<MemberEntity> memberEntity = memberList.getContent();
+
             return memberMapper.toListDomain(memberEntity);
     }
 

@@ -14,9 +14,11 @@ public class MainController {
 
     private final MemberUseCasePort memberUseCasePort;
 
-    @GetMapping("/home")
+    @GetMapping("/member")
     public String home(Model model) {
         model.addAttribute("member_list", memberUseCasePort.findMemberList());
         return "main";
     }
+
+
 }

@@ -25,30 +25,33 @@ public class TextSocket extends TextWebSocketHandler {
 
 
     private List<WebSocketSession> list = new ArrayList<>();
+
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-      String payLoad = message.getPayload();
+        String payLoad = message.getPayload();
         log.info("session 값 : " + list);
 
-      for(WebSocketSession webSocketSession : list){
-              webSocketSession.sendMessage(message);
-      }
+        for (WebSocketSession webSocketSession : list) {
+            webSocketSession.sendMessage(message);
+        }
 
     }
 
     /**
      * 클라이언트 접속시
+     *
      * @param session
      * @throws Exception
      */
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-      list.add(session);
-      log.info("세션 : " + session);
+        list.add(session);
+        log.info("세션 : " + session);
     }
 
     /**
      * client가 접속 해제시 호출되는 메소드
+     *
      * @param session
      * @param status
      * @throws Exception

@@ -15,6 +15,8 @@ public class MovieController {
     public void views() {
         movieUserCasePort.views();
         ResponseEntity.ok().body("success");
+
+
     }
 
 

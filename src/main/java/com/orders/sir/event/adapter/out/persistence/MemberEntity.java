@@ -19,6 +19,10 @@ public class MemberEntity{
     private Long seq;
     @JsonProperty("member_id")
     private String memberId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private TeamEntity teamEntity;
     @JsonProperty("member_name")
     private String memberName;
     @JsonProperty("member_password")
@@ -27,8 +31,9 @@ public class MemberEntity{
     private String memberAddress;
 
     @Builder
-    public MemberEntity(String memberId, String memberName, String memberPassword, String memberAddress) {
+    public MemberEntity(String memberId, TeamEntity teamEntity, String memberName, String memberPassword, String memberAddress) {
         this.memberId = memberId;
+      //  this.teamEntity = teamEntity;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberAddress = memberAddress;
