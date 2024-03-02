@@ -4,6 +4,8 @@ server:
 spring:
   thymeleaf:
     cache: false
+    prefix: file:src/main/resources/templates/
+
   kafka:
     consumer:
       bootstrap-servers: localhost:9092

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/page")
 @RequiredArgsConstructor
-public class ContentController {
+public class ContentViewController {
 
     @GetMapping("/home")
     public String mainPage(Model model) {
@@ -18,6 +18,6 @@ public class ContentController {
 
     @GetMapping("/add")
     public String contentCreate() {
-        return "layout/content/main";
+        return "layout/content/create";
     }
 }

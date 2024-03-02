@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>상품 등록</title>
 </head>
 <body>
+<header>
+    <div th:include="/layout/content/header.html"></div>
+</header>
 
+<form id="product_form">
+    <div>
+        <td>상품명</td>
+        <input id="product_name" name="product_name"/>
+        <td>상품 가격</td>
+        <input id="product_price" name="product_price"/>
+    </div>
 
+    <button onclick="add_product">등록하기</button>
+</form>
 </body>
+<script src="/js/content/event.js"></script>
+
 </html>

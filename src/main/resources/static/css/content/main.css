@@ -12,19 +12,6 @@ header {
     text-align: center;
 }
 
-.nav-menu {
-    margin
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
 
 /*main {
     display: flex;
@@ -88,16 +75,5 @@ section.new-arrivals > div {
     margin: 20px 0;
 }*/
 
-.menu-link {
- color : white;
-}
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
+

@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>실시간 쇼핑</title>
     <link rel="stylesheet" href="/css/content/main.css">
+    <link rel="stylesheet" href="/css/content/header.css">
+
+    <link>
 </head>
 <body>
-
 <header>
-    <h1>실시간 소통하면서 쇼핑도 하자!</h1>
-    <nav class ="nav-menu">
-        <ul>
-            <li><a href="/" class="menu-link">홈</a></li>
-            <li><a href="/products" class="menu-link">상품 등록</a></li>
-            <li><a href="/cart" class="menu-link">장바구니</a></li>
-            <li><a href="/contact" class="menu-link">고객 지원</a></li>
-        </ul>
-    </nav>
+    <div th:include="/layout/content/header.html"></div>
 </header>
+
 
 <main>
     <section class="featured-products">
