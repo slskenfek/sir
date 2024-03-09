@@ -1,6 +1,6 @@
 package com.orders.sir.event.application.service;
 
-import com.orders.sir.event.adapter.out.persistence.TeamPersitenceAdapter;
+import com.orders.sir.event.adapter.out.persistence.team.TeamPersitenceAdapter;
 import com.orders.sir.event.application.port.in.TeamUsePort;
 import com.orders.sir.event.domain.Team;
 import lombok.RequiredArgsConstructor;

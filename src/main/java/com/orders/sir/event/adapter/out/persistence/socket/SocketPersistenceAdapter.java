@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.socket;
 
 import com.orders.sir.event.application.port.out.SocketLoadPort;
 import com.orders.sir.event.domain.Socket;

@@ -1,6 +1,6 @@
 package com.orders.sir.event.application.port.out;
 
-import com.orders.sir.event.adapter.out.persistence.MemberEntity;
+import com.orders.sir.event.adapter.out.persistence.member.MemberEntity;
 import com.orders.sir.event.domain.Member;
 
 import java.util.List;

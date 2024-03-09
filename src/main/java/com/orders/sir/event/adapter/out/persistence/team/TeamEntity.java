@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.team;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

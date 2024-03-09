@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

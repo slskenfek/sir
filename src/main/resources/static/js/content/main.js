@@ -21,11 +21,13 @@
         });
 
         // 상품 로드 함수
-        function loadProducts(startIndex, count) {
-            for (let i = startIndex; i < startIndex + count && i < products.length; i++) {
+function loadProducts(startIndex, count) {
+   for (let i = startIndex; i < startIndex + count && i < products.length; i++) {
                 const productDiv = document.createElement("div");
                 productDiv.className = "main-product";
                 productDiv.innerHTML = `<p>${products[i]}</p><button>장바구니에 추가</button>`;
                 productContainer.appendChild(productDiv);
-            }
-        }
+     }
+}
+
+

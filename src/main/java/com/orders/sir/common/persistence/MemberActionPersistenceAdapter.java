@@ -1,7 +1,6 @@
 package com.orders.sir.common.persistence;
 
 import com.orders.sir.common.config.MemberActionConfigItem;
-import com.orders.sir.event.adapter.out.persistence.MemberEntity;
 import lombok.RequiredArgsConstructor;
 
 // 사용자 액션 정보를 [역할# JPA를 이용하여 저장] 저장하라

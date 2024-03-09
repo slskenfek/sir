@@ -11,17 +11,21 @@
     <div th:include="/layout/content/header.html"></div>
 </header>
 
-<form id="product_form">
+<form id="product_form" onsubmit="add_product(); return false;">
+
     <div>
-        <td>상품명</td>
+        <label for="product_name">상품명</label>
         <input id="product_name" name="product_name"/>
-        <td>상품 가격</td>
-        <input id="product_price" name="product_price"/>
+
+        <label for="product_price">상품 가격</label>
+        <input id="product_price" name="product_price" oninput="addCommas(this)"/>
     </div>
 
-    <button onclick="add_product">등록하기</button>
+
+    <button type="submit">등록하기</button>
 </form>
 </body>
 <script src="/js/content/event.js"></script>
+<script src="/js/common.js"></script>
 
 </html>

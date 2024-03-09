@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.member;
 
 import com.orders.sir.event.domain.Member;
 import org.springframework.stereotype.Component;

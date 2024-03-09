@@ -1,5 +1,8 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.member;
 
+import com.orders.sir.event.adapter.out.persistence.member.MemberEntity;
+import com.orders.sir.event.adapter.out.persistence.member.MemberModel;
+import com.orders.sir.event.adapter.out.persistence.member.MemberPersistence;
 import com.orders.sir.event.application.port.out.MemberLoadPort;
 import com.orders.sir.event.domain.Member;
 import lombok.RequiredArgsConstructor;

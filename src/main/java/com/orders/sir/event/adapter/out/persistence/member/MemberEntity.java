@@ -1,6 +1,7 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.member;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.orders.sir.event.adapter.out.persistence.team.TeamEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

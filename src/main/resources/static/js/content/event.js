@@ -1,16 +1,25 @@
 function add_product() {
 
+
+    const formData = {
+         productName: document.getElementById('product_name').value,
+         productPrice: document.getElementById('product_price').value.replaceAll(",", "")
+     };
+
     $.ajax({
-        url: 'https://example.com/data',
+        url: '/api/content',
         method: 'POST',  // 요청 방식 (GET, POST 등)
         dataType: 'json',  // 응답 데이터 형식 (json, html 등)
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+
         success: function(response) {
-            // 성공적으로 요청이 완료됨
-            console.log(response);
+            alert("상품등록 성공 하였습니다.")
         },
         error: function() {
-            // 요청이 실패했을 때의 처리
-            console.error('AJAX request failed');
+            alert("실패 하였습니다")
         }
     });
 }
+
+

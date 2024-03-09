@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.out.persistence;
+package com.orders.sir.event.adapter.out.persistence.team;
 
 
 import com.orders.sir.event.application.port.out.TeamLoadPort;

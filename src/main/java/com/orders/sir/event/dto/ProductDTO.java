@@ -11,6 +11,6 @@ public class ProductDTO {
     @AllArgsConstructor
     public static class AddRequest {
         private String productName; //상품명
-        private int price; //가격
+        private int productPrice; //가격
     }
 }

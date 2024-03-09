@@ -1,6 +1,6 @@
 package com.orders.sir.event.domain;
 
-import com.orders.sir.event.adapter.out.persistence.MemberEntity;
+import com.orders.sir.event.adapter.out.persistence.member.MemberEntity;
 import com.orders.sir.exception.ExceptionCustom;
 import lombok.*;
 
