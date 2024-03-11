@@ -1,6 +1,6 @@
 package com.orders.sir.page;
 
-import com.orders.sir.event.application.port.in.MemberUseCasePort;
+import com.orders.sir.event.member.application.port.in.MemberUseCasePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

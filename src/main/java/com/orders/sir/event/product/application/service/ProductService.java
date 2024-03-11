@@ -16,6 +16,6 @@ public class ProductService implements ProductPort {
 
     @Override
     public void addContent(ProductDTO.AddRequest request) {
-
+        productLoadPort.addContent(request.toEntity());
     }
 }

@@ -1,7 +1,7 @@
 package com.orders.sir.page;
 
 
-import com.orders.sir.event.application.port.in.SocketPort;
+import com.orders.sir.event.socket.application.port.in.SocketPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

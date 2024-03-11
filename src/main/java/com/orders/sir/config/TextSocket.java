@@ -1,8 +1,7 @@
 package com.orders.sir.config;
 
-import com.orders.sir.event.application.port.in.MemberUseCasePort;
-import com.orders.sir.event.application.port.in.SocketPort;
-import com.orders.sir.event.domain.Member;
+
+import com.orders.sir.event.socket.application.port.in.SocketPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
