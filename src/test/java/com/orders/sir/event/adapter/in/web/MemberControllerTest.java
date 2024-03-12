@@ -1,7 +1,7 @@
 package com.orders.sir.event.adapter.in.web;
 
 import com.orders.sir.ApiTest;
-import com.orders.sir.event.domain.Member;
+import com.orders.sir.event.member.domain.Member;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -15,10 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 
 class MemberControllerTest extends ApiTest {
@@ -29,14 +27,14 @@ class MemberControllerTest extends ApiTest {
     @Test
     @DisplayName("전체 회원 들고오기 테스트")
     public void findMemberList() {
-    //API 요청
-    ExtractableResponse<Response> response =
-        RestAssured.given().log().all()
-                .when()
-                .get("/api/members")
-                .then()
-                .log().all().extract();
-    assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
+        //API 요청
+        ExtractableResponse<Response> response =
+                RestAssured.given().log().all()
+                        .when()
+                        .get("/api/members")
+                        .then()
+                        .log().all().extract();
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 
     @Test
@@ -62,19 +60,19 @@ class MemberControllerTest extends ApiTest {
 
     private static ExtractableResponse<Response> 회원찾기요청(Long memberSeq) {
         final ExtractableResponse<Response> response =
-        RestAssured.given().log().all()
-                    .when()
-                    .get("/api/members/" + memberSeq)
-                    .then()
-                    .log().all().extract();
+                RestAssured.given().log().all()
+                        .when()
+                        .get("/api/members/" + memberSeq)
+                        .then()
+                        .log().all().extract();
         return response;
     }
 
     @Test
     @DisplayName("회원 생성")
     void createMember() throws InterruptedException {
-        
-        for(int i=0; i<10; i++) {
+
+        for (int i = 0; i < 10; i++) {
             final Member body2 = Member.builder()
                     .memberId("kimsu" + i)
                     .memberAddress("창원시 경찰서" + i)
@@ -82,16 +80,16 @@ class MemberControllerTest extends ApiTest {
                     .memberName("뽀삐" + i)
                     .build();
 
-                ExtractableResponse<Response> response2 =
-                        RestAssured.given().log().all()
-                                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                                .body(body2)
-                                .when()
-                                .post("/api/members")
-                                .then()
-                                .log().all().extract();
+            ExtractableResponse<Response> response2 =
+                    RestAssured.given().log().all()
+                            .contentType(MediaType.APPLICATION_JSON_VALUE)
+                            .body(body2)
+                            .when()
+                            .post("/api/members")
+                            .then()
+                            .log().all().extract();
 
-                assertThat(response2.statusCode()).isEqualTo(HttpStatus.CREATED.value());
+            assertThat(response2.statusCode()).isEqualTo(HttpStatus.CREATED.value());
 
 
         }
@@ -103,7 +101,7 @@ class MemberControllerTest extends ApiTest {
     @Transactional
     @DisplayName("업데이트 요청")
     void updateMember() {
-        final Member body =  Member.builder()
+        final Member body = Member.builder()
                 .memberId("ppTest1")
                 .memberAddress("서울특별시 관악구")
                 .memberPassword("q1w2e3")
@@ -138,21 +136,21 @@ class MemberControllerTest extends ApiTest {
             long finalPlus = plus;
             executorService.submit(() -> {
 
-                 var memberSeq = 회원번호() + finalPlus;
-                System.out.println("번호 : "+ memberSeq);
-                ExtractableResponse<Response> response =
-                        RestAssured.given().log().all()
-                                .when()
-                                .delete("/api/members/" + memberSeq)
-                                .then()
-                                .log().all().extract();
-                assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
+                        var memberSeq = 회원번호() + finalPlus;
+                        System.out.println("번호 : " + memberSeq);
+                        ExtractableResponse<Response> response =
+                                RestAssured.given().log().all()
+                                        .when()
+                                        .delete("/api/members/" + memberSeq)
+                                        .then()
+                                        .log().all().extract();
+                        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
 
-                }
+                    }
 
             );
 
-            plus ++;
+            plus++;
         }
 
 

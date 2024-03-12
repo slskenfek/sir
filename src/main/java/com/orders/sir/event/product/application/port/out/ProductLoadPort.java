@@ -1,10 +1,10 @@
 package com.orders.sir.event.product.application.port.out;
 
-import com.orders.sir.event.product.adapter.out.persistence.ProductEntity;
+import com.orders.sir.event.product.adapter.out.persistence.ProductDateEntity;
 
 public interface ProductLoadPort {
 
-    void addContent(ProductEntity productEntity);
+    void addContent(ProductDateEntity productEntity);
 
 
 }

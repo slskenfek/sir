@@ -1,6 +1,7 @@
 package com.orders.sir.event.product.dto;
 
-import com.orders.sir.event.product.adapter.out.persistence.ProductEntity;
+import com.orders.sir.event.category.adapter.out.CategoryEntity;
+import com.orders.sir.event.product.adapter.out.persistence.ProductDateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,14 +12,23 @@ public class ProductDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class AddRequest {
-        private String productName; //상품명
-        private int productPrice; //가격
+        //상품명
+        private String productName;
+        //가격
+        private int productPrice;
 
-        public ProductEntity toEntity() {
-            return ProductEntity
+        //카테고리 아이디
+        private String categoryCode;
+
+        private String productContext;
+
+        public ProductDateEntity toEntity() {
+            return ProductDateEntity
                     .builder()
                     .productName(this.productName)
                     .productPrice(this.productPrice)
+                    .productContext(this.productContext)
+                    .categoryEntity(new CategoryEntity(this.categoryCode))
                     .build();
 
         }

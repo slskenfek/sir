@@ -1,5 +1,7 @@
 package com.orders.sir.event.product.adapter.out.persistence;
 
+import com.orders.sir.common.entity.BaseDateEntity;
+import com.orders.sir.event.category.adapter.out.CategoryEntity;
 import com.orders.sir.event.member.adapter.out.persistence.MemberEntity;
 import com.orders.sir.event.product.dto.ProductDTO;
 import jakarta.persistence.*;
@@ -9,16 +11,16 @@ import lombok.NoArgsConstructor;
 
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "product")
-public class ProductEntity {
-
+public class ProductDateEntity extends BaseDateEntity {
     @Builder
-    public ProductEntity(String productName, Integer productPrice, MemberEntity memberEntity) {
+    public ProductDateEntity(String productName, Integer productPrice, MemberEntity memberEntity, CategoryEntity categoryEntity, String productContext) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.memberEntity = memberEntity;
+        this.categoryEntity = categoryEntity;
+        this.productContext = productContext;
     }
 
     @Id
@@ -34,10 +36,22 @@ public class ProductEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private MemberEntity memberEntity;
 
+    @ManyToOne
+    @JoinColumn(name="category_idx")
+    public CategoryEntity categoryEntity;
+
+    //상품 설명
+    @Column(name="product_context", length = 200)
+    private String productContext;
+
+
     public ProductDTO.AddRequest productDTO() {
         return new ProductDTO.AddRequest(
                 this.productName,
-                this.productPrice);
+                this.productPrice,
+                this.categoryEntity.getCategoryCode(),
+                this.productContext
+        );
 
     }
 }
