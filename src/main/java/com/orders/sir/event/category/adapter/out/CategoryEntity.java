@@ -1,17 +1,23 @@
 package com.orders.sir.event.category.adapter.out;
 
+import com.orders.sir.common.entity.BaseDateAndUserEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table(name= "category")
 @Entity
-@NoArgsConstructor
 @Getter
-public class CategoryEntity {
+public class CategoryEntity extends BaseDateAndUserEntity {
 
-    public CategoryEntity(String categoryCode) {
+
+    @Builder
+    public CategoryEntity(Long id, String categoryName, String categoryCode, Integer depth) {
+        this.id = id;
+        this.categoryName = categoryName;
         this.categoryCode = categoryCode;
+        this.depth = depth;
     }
 
     @Id

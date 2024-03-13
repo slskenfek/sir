@@ -23,14 +23,19 @@ public class ProductDTO {
         private String productContext;
 
         public ProductDateEntity toEntity() {
+            CategoryEntity categoryEntity = CategoryEntity.builder()
+                    .categoryCode(this.categoryCode)
+                    .build();
+
             return ProductDateEntity
                     .builder()
                     .productName(this.productName)
                     .productPrice(this.productPrice)
                     .productContext(this.productContext)
-                    .categoryEntity(new CategoryEntity(this.categoryCode))
+                    .categoryEntity(categoryEntity)
                     .build();
 
         }
     }
+
 }
