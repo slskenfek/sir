@@ -20,8 +20,8 @@ public class CategoryControllerTests {
     @DisplayName("카테고리 등록")
     public void addContent() {
         CategoryEventParams.AddRequest request = new CategoryEventParams.AddRequest(
-                CategoryManager.GARMENT.getName(),
-                CategoryManager.GARMENT.getCode(),
+                CategoryManager.FOOD.getName(),
+                CategoryManager.FOOD.getCode(),
                 1
         );
 

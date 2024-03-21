@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name= "category")
 @Entity
 @Getter
+@Setter
 public class CategoryEntity extends BaseDateAndUserEntity {
 
 

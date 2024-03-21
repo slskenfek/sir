@@ -14,6 +14,7 @@ public class CategoryFindParams {
         private String categoryName;
         private String categoryCode;
         private Integer depth;
+        private Long id;
     }
 
 }

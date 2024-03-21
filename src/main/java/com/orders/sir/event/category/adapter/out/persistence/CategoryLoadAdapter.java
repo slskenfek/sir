@@ -17,7 +17,7 @@ public class CategoryLoadAdapter implements CategoryEventLoadPort {
     public void saveCategory(CategoryEntity categoryEntity) {
         try {
             categoryPersistence.save(categoryEntity);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.getStackTrace();
         }
 
