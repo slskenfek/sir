@@ -37,4 +37,24 @@ public class CategoryControllerTests {
 
 
     }
+
+    @Test
+    @DisplayName("카테고리 수정")
+    public void updateContent() {
+        CategoryEventParams.UpdateRequest request = new CategoryEventParams.UpdateRequest(
+                CategoryManager.GARMENT.getName(),
+                CategoryManager.GARMENT.getCode(),
+                2
+        );
+        ExtractableResponse<Response> response =
+                RestAssured.given().log().all()
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .body(request)
+                        .when()
+                        .put("/api/category/{categoryId}", 2)
+                        .then()
+                        .log().all().extract();
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
+
+    }
 }

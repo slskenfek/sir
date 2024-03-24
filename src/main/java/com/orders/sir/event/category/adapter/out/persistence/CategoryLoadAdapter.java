@@ -2,8 +2,6 @@ package com.orders.sir.event.category.adapter.out.persistence;
 
 import com.orders.sir.event.category.adapter.out.CategoryEntity;
 import com.orders.sir.event.category.application.port.out.CategoryEventLoadPort;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

@@ -47,6 +47,7 @@ public class CategoryEventService implements CategoryEventPort {
                 category.setCategoryCode(updateRequest.getCategoryCode());
                 category.setCategoryName(updateRequest.getCategoryName());
                 category.setDepth(updateRequest.getDepth());
+
             } else {
                 throw new NoSuchFieldException("변경할 카테고리가 검색되지 않습니다.");
             }

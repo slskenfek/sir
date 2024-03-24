@@ -8,26 +8,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.orders.sir.event.category.adapter.out.QCategoryEntity.categoryEntity;
 
 @Repository
 @RequiredArgsConstructor
-public class CategoryQuery implements CustomCategoryRepository {
+public class CustomCategoryRepositoryImpl implements CustomCategoryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
 
     @Override
-    public Optional<List<CategoryEntity>> getSearchCategoryList(CategoryFindParams.SearchRequest searchRequest) {
+    public List<CategoryEntity> getCategoryListWithSearch(CategoryFindParams.SearchRequest searchRequest) {
         List<CategoryEntity> category =
                 jpaQueryFactory.select(categoryEntity)
                         .from(categoryEntity)
                         .where(searchWhere(searchRequest))
                         .fetch();
 
-        return Optional.ofNullable(category);
+        return category;
     }
 
     private BooleanExpression searchWhere(CategoryFindParams.SearchRequest searchRequest) {
