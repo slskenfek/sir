@@ -16,67 +16,67 @@ public class MainRestControllerException {
 
     private final Logger logger = LoggerFactory.getLogger(MainRestControllerException.class);
     @ExceptionHandler(Exception.class)
-  protected ResponseEntity<ErrorResponse> handleException(Exception e) {
+  protected ResponseEntity<ResponseErrorCode> handleException(Exception e) {
         logger.error("handleException" , e);
-        ErrorResponse errorResponse = ErrorResponse
+        ResponseErrorCode responseErrorCode = ResponseErrorCode
                                             .create()
                 .code(ErrorCode.SERVER_ERROR.getCode())
                                             .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                             .message(e.toString());
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(responseErrorCode, HttpStatus.INTERNAL_SERVER_ERROR);
 
   }
 
     @ExceptionHandler(NotBoundException.class)
-    protected ResponseEntity<ErrorResponse> handleNotBoundException(NotBoundException e) {
+    protected ResponseEntity<ResponseErrorCode> handleNotBoundException(NotBoundException e) {
         logger.error("handleNotBoundException" , e);
-        ErrorResponse errorResponse = ErrorResponse
+        ResponseErrorCode responseErrorCode = ResponseErrorCode
                 .create()
                 .code(ErrorCode.NOT_FOUND.getCode())
                 .status(HttpStatus.NOT_FOUND.value())
                 .message(e.toString());
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(responseErrorCode, HttpStatus.NOT_FOUND);
 
     }
 
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
-    protected ResponseEntity<ErrorResponse> badRequestException(HttpClientErrorException.BadRequest e) {
+    protected ResponseEntity<ResponseErrorCode> badRequestException(HttpClientErrorException.BadRequest e) {
         logger.error("badRequestException" , e);
-        ErrorResponse errorResponse = ErrorResponse
+        ResponseErrorCode responseErrorCode = ResponseErrorCode
                 .create()
                 .code(ErrorCode.BAD_REQUEST.getCode())
                 .status(HttpStatus.NOT_FOUND.value())
                 .message(e.toString());
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(responseErrorCode, HttpStatus.BAD_REQUEST);
 
     }
 
     @ExceptionHandler(ExceptionCustom.ApiException.class)
-    protected ResponseEntity<ErrorResponse> apiException(ExceptionCustom.ApiException e) {
+    protected ResponseEntity<ResponseErrorCode> apiException(ExceptionCustom.ApiException e) {
         logger.error("apiException" , e);
-        ErrorResponse errorResponse = ErrorResponse
+        ResponseErrorCode responseErrorCode = ResponseErrorCode
                 .create()
                 .code(ErrorCode.API_ERROR.getCode())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message(e.toString());
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(responseErrorCode, HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 
     @ExceptionHandler(ExceptionCustom.ValidationException.class)
-    protected ResponseEntity<ErrorResponse> validationExceptionException(ExceptionCustom.ValidationException e) {
+    protected ResponseEntity<ResponseErrorCode> validationExceptionException(ExceptionCustom.ValidationException e) {
         logger.error("ValidationException" , e);
-        ErrorResponse errorResponse = ErrorResponse
+        ResponseErrorCode responseErrorCode = ResponseErrorCode
                 .create()
                 .code(ErrorCode.VALIDATION_ERROR.getCode())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message(e.toString());
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(responseErrorCode, HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 

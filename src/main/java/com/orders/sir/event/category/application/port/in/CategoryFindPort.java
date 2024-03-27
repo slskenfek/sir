@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface CategoryFindPort {
 
-     Optional<List<CategoryEntity>> getCategorySearchList(CategoryFindParams.SearchRequest searchRequest);
+     List<CategoryEntity> getCategorySearchList(CategoryFindParams.SearchRequest searchRequest);
 
      Optional<CategoryEntity> findByCategoryId(Long id);
 }

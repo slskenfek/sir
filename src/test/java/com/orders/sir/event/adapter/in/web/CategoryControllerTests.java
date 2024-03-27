@@ -57,4 +57,18 @@ public class CategoryControllerTests {
         assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
 
     }
+
+    @Test
+    @DisplayName("카테고리 조회")
+    public void selectContent() {
+
+        ExtractableResponse<Response> response =
+                RestAssured.given().log().all()
+                        .when()
+                        .get("/api/category?categoryCode=A001")
+                        .then()
+                        .log().all().extract();
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
+
+    }
 }

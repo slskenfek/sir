@@ -22,10 +22,12 @@ public abstract class BaseDateAndUserEntity {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    @Column(name = "create_userIdx")
+    @CreatedDate
+    @Column(name = "create_user_idx", updatable = false)
     private Integer createUserIdx;
 
-    @Column(name = "update_userIdx")
+    @LastModifiedDate
+    @Column(name = "update_user_idx")
     private Integer updateUserIdx;
 
 }

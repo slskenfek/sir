@@ -6,12 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 @Table(name= "category")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Audited
 public class CategoryEntity extends BaseDateAndUserEntity {
 
 

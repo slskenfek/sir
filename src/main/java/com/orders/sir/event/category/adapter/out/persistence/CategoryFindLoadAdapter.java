@@ -5,10 +5,12 @@ import com.orders.sir.event.category.application.port.in.CategoryFindPort;
 import com.orders.sir.event.category.dto.CategoryFindParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional(readOnly = true)
 @Repository
 @RequiredArgsConstructor
 public class CategoryFindLoadAdapter implements CategoryFindPort {
@@ -17,17 +19,12 @@ public class CategoryFindLoadAdapter implements CategoryFindPort {
 
 
     @Override
-    public Optional<List<CategoryEntity>> getCategorySearchList(CategoryFindParams.SearchRequest searchRequest) {
-        List<CategoryEntity> categoryEntities =
-        categoryPersistence.getCategoryListWithSearch(searchRequest);
-
-        return Optional.ofNullable(categoryEntities);
-
+    public List<CategoryEntity> getCategorySearchList(CategoryFindParams.SearchRequest searchRequest) {
+        return categoryPersistence.getCategoryListWithSearch(searchRequest);
     }
 
     @Override
     public Optional<CategoryEntity> findByCategoryId(Long id) {
         return categoryPersistence.findById(id);
-
     }
 }

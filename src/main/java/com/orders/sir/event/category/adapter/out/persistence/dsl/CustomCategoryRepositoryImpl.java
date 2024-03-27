@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.orders.sir.event.category.adapter.out.QCategoryEntity.categoryEntity;
+import static org.springframework.util.StringUtils.hasText;
 
 @Repository
 @RequiredArgsConstructor
@@ -30,9 +31,17 @@ public class CustomCategoryRepositoryImpl implements CustomCategoryRepository {
     }
 
     private BooleanExpression searchWhere(CategoryFindParams.SearchRequest searchRequest) {
-        return categoryEntity.categoryCode.eq(searchRequest.getCategoryCode())
-                .and(categoryEntity.categoryName.eq(searchRequest.getCategoryName()))
-                .and(categoryEntity.id.eq(searchRequest.getId()));
+        BooleanExpression booleanExpression = categoryEntity.isNotNull();
+
+        if (hasText(searchRequest.getCategoryCode())) {
+            booleanExpression = booleanExpression.and(categoryEntity.categoryCode.eq(searchRequest.getCategoryCode()));
+        } else if (hasText(searchRequest.getCategoryCode())) {
+            booleanExpression = booleanExpression.and(categoryEntity.categoryName.eq(searchRequest.getCategoryName()));
+        } else if (searchRequest.getId() != null) {
+            booleanExpression = booleanExpression.and(categoryEntity.id.eq(searchRequest.getId()));
+        }
+
+        return booleanExpression;
 
     }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
-public class ErrorResponse {
+public class ResponseErrorCode {
 
     private LocalDateTime localDateTime = LocalDateTime.now();
 
@@ -15,20 +15,20 @@ public class ErrorResponse {
     private String code;
     private int status;
 
-     public static ErrorResponse create() {
-        return new ErrorResponse();
+     public static ResponseErrorCode create() {
+        return new ResponseErrorCode();
     }
-    public ErrorResponse code(String code) {
+    public ResponseErrorCode code(String code) {
          this.code = code;
          return this;
     }
 
-    public ErrorResponse status(int status) {
+    public ResponseErrorCode status(int status) {
         this.status = status;
         return this;
     }
 
-    public ErrorResponse message(String message) {
+    public ResponseErrorCode message(String message) {
         this.message = message;
         return this;
     }
