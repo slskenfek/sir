@@ -7,7 +7,12 @@ springdoc:
         disable-swagger-default-url: true
         operations-sorter: method
         #doc-expansion: none //접기 여부
+
 spring:
+    #config:
+        #activate:
+            #on-profile: local
+
     thymeleaf:
         cache: false
         prefix: file:src/main/resources/templates/
@@ -25,22 +30,28 @@ spring:
             value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
     datasource:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://localhost:3306/order?serverTimeZone=UTC&CharacterEncoding=UTF-8
+
+        #driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: org.mariadb.jdbc.Driver
+        jdbc-url: jdbc:mariadb://localhost:3306/order?serverTimeZone=UTC&CharacterEncoding=UTF-8
         username: root
         password: 1234
+
     security:
         user:
             name: yongjun
             password: 1234
     jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
+        #database-platform: org.hibernate.dialect.MySQLDialect
+        database-platform: org.hibernate.dialect.MariaDBDialect
+
         properties:
             org.hibernate:
                 format_sql: true
                 ddl-auto: update
                 naming:
                     physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                dialect: org.hibernate.dialect.MariaDBDialect
         generate-ddl: false
         open-in-view: false
         show-sql: true
