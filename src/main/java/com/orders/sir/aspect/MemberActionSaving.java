@@ -16,7 +16,7 @@ public class MemberActionSaving {
 
     private final MemberActionService memberActionService;
 
-    @Around("@annotation(com.orders.sir.aspect.AspectTargetObject)")
+    @Around("@annotation(com.orders.sir.aspect.AspectTargetActions)")
     public Object saveAction(@RequestBody MemberActionConfigItem request, ProceedingJoinPoint joinPoint) throws Throwable {
         memberActionService.saveMemberAction(request);
         return joinPoint.proceed();

@@ -30,7 +30,6 @@ spring:
             value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
     datasource:
-
         #driver-class-name: com.mysql.cj.jdbc.Driver
         driver-class-name: org.mariadb.jdbc.Driver
         jdbc-url: jdbc:mariadb://localhost:3306/order?serverTimeZone=UTC&CharacterEncoding=UTF-8
@@ -52,7 +51,7 @@ spring:
                 naming:
                     physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
                 dialect: org.hibernate.dialect.MariaDBDialect
-        generate-ddl: false
+        generate-ddl: true
         open-in-view: false
         show-sql: true
 
