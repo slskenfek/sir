@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.in.web;
+package com.orders.sir.event.adapter.in.category.web;
 
 import com.orders.sir.event.category.domain.CategoryManager;
 import com.orders.sir.event.category.dto.CategoryEventParams;

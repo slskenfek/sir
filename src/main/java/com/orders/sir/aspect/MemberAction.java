@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Aspect
 @RequiredArgsConstructor
-public class MemberActionSaving  {
+public class MemberAction {
 
    private final MemberActionService memberActionService;
 

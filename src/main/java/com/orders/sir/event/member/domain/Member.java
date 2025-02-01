@@ -16,16 +16,16 @@ import lombok.NoArgsConstructor;
 public class Member {
 
     @Builder
-    public Member(Long seq, String memberId, String memberName,
+    public Member(Long id, String memberId, String memberName,
                   String memberPassword, String memberAddress) {
-        this.seq = seq;
+        this.id = id;
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberAddress = memberAddress;
     }
 
-    private Long seq;
+    private Long id;
     private String memberId;
     private String memberName;
     private String memberPassword;

@@ -11,7 +11,7 @@ public class ProductPersisAdapter implements ProductLoadPort {
     private final ProductPersistence productPersistence;
 
     @Override
-    public void addContent(ProductDateEntity productEntity) {
+    public void addContent(ProductEntity productEntity) {
         productPersistence.save(productEntity);
     }
 }

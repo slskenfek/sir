@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.in.web;
+package com.orders.sir.event.adapter.in.product.web;
 
 import com.orders.sir.event.product.dto.ProductDTO;
 import io.restassured.RestAssured;

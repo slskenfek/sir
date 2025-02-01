@@ -2,6 +2,7 @@ package com.orders.sir.event.category.adapter.out.persistence.dsl;
 
 import com.orders.sir.event.category.adapter.out.CategoryEntity;
 import com.orders.sir.event.category.dto.CategoryFindParams;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -30,18 +31,35 @@ public class CustomCategoryRepositoryImpl implements CustomCategoryRepository {
         return category;
     }
 
-    private BooleanExpression searchWhere(CategoryFindParams.SearchRequest searchRequest) {
-        BooleanExpression booleanExpression = categoryEntity.isNotNull();
+    private BooleanBuilder searchWhere(CategoryFindParams.SearchRequest searchRequest) {
+        BooleanBuilder builder = new BooleanBuilder();
+        return builder.and(categoryCodeEa(searchRequest.getCategoryCode()))
+                .and(categoryNameEa(searchRequest.getCategoryName()))
+                .and(categoryIdEa(searchRequest.getId()))
+                .and(categoryCodeEa(searchRequest.getCategoryCode()));
 
-        if (hasText(searchRequest.getCategoryCode())) {
-            booleanExpression = booleanExpression.and(categoryEntity.categoryCode.eq(searchRequest.getCategoryCode()));
-        } else if (hasText(searchRequest.getCategoryCode())) {
-            booleanExpression = booleanExpression.and(categoryEntity.categoryName.eq(searchRequest.getCategoryName()));
-        } else if (searchRequest.getId() != null) {
-            booleanExpression = booleanExpression.and(categoryEntity.id.eq(searchRequest.getId()));
+    }
+
+
+    private BooleanExpression categoryCodeEa(String categoryCode) {
+        if (hasText(categoryCode)) {
+            System.out.println("입장ㅋ");
+            return categoryEntity.categoryCode.eq(categoryCode);
         }
+        return null;
+    }
 
-        return booleanExpression;
+    private BooleanExpression categoryNameEa(String categoryName) {
+        if (hasText(categoryName)) {
+            return categoryEntity.categoryName.eq(categoryName);
+        }
+        return null;
+    }
 
+    private BooleanExpression categoryIdEa(Long categoryId) {
+        if (categoryId != null) {
+            return categoryEntity.id.eq(categoryId);
+        }
+        return null;
     }
 }

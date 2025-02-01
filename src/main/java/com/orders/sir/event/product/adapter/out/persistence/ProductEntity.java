@@ -7,19 +7,18 @@ import com.orders.sir.event.product.dto.ProductDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 
 @AllArgsConstructor
 @Entity
 @Table(name = "product")
-public class ProductDateEntity extends BaseDateEntity {
+public class ProductEntity extends BaseDateEntity {
     @Builder
-    public ProductDateEntity(String productName, Integer productPrice, MemberEntity memberEntity, CategoryEntity categoryEntity, String productContext) {
+    public ProductEntity(String productName, Integer productPrice, MemberEntity memberEntity, String categoryCode, String productContext) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.memberEntity = memberEntity;
-        this.categoryEntity = categoryEntity;
+        this.categoryCode = categoryCode;
         this.productContext = productContext;
     }
 
@@ -32,13 +31,12 @@ public class ProductDateEntity extends BaseDateEntity {
     @Column(name = "product_price")
     private Integer productPrice;
 
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "member_idx", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private MemberEntity memberEntity;
 
-    @ManyToOne
-    @JoinColumn(name="category_idx")
-    public CategoryEntity categoryEntity;
+    @Column(name = "category_code")
+    public String categoryCode;
 
     //상품 설명
     @Column(name="product_context", length = 200)
@@ -49,7 +47,7 @@ public class ProductDateEntity extends BaseDateEntity {
         return new ProductDTO.AddRequest(
                 this.productName,
                 this.productPrice,
-                this.categoryEntity.getCategoryCode(),
+                this.categoryCode,
                 this.productContext
         );
 

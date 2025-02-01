@@ -17,7 +17,7 @@ public class MemberEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seq;
+    private Long id;
     @JsonProperty("member_id")
     private String memberId;
 

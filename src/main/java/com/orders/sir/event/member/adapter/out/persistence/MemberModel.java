@@ -18,7 +18,7 @@ public class MemberModel {
             return null;
         }
         return Member.builder()
-                .seq(entity.getSeq())
+                .id(entity.getId())
                 .memberId(entity.getMemberId())
                 .memberPassword(entity.getMemberPassword())
                 .memberAddress(entity.getMemberAddress())
@@ -33,7 +33,7 @@ public class MemberModel {
         for(MemberEntity member : entity) {
 
             domainList.add(Member.builder()
-                    .seq(member.getSeq())
+                    .id(member.getId())
                     .memberId(member.getMemberId())
                     .memberPassword(member.getMemberPassword())
                     .memberAddress(member.getMemberAddress())

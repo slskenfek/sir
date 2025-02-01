@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.in.web;
+package com.orders.sir.event.adapter.in.team.web;
 
 import com.orders.sir.ApiTest;
 import io.restassured.RestAssured;

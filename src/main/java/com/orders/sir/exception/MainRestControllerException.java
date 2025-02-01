@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.rmi.NotBoundException;
 
 @RestControllerAdvice
-public class MainRestControllerException {
+public class MainRestControllerException extends ResponseEntityExceptionHandler {
 
     private final Logger logger = LoggerFactory.getLogger(MainRestControllerException.class);
     @ExceptionHandler(Exception.class)
@@ -23,7 +24,6 @@ public class MainRestControllerException {
                 .code(ErrorCode.SERVER_ERROR.getCode())
                                             .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                             .message(e.toString());
-
         return new ResponseEntity<>(responseErrorCode, HttpStatus.INTERNAL_SERVER_ERROR);
 
   }

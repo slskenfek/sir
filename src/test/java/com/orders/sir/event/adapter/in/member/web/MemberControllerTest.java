@@ -1,4 +1,4 @@
-package com.orders.sir.event.adapter.in.web;
+package com.orders.sir.event.adapter.in.member.web;
 
 import com.orders.sir.ApiTest;
 import com.orders.sir.event.member.domain.Member;

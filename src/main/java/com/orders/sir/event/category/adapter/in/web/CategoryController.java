@@ -35,10 +35,10 @@ public class CategoryController {
         return ResponseEntity.ok().body("등록 하였습니다.");
     }
 
-    @PutMapping("/{categoryId}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> updateCategory(@RequestBody CategoryEventParams.UpdateRequest updateRequest,
-                                                 @PathVariable Long categoryId) {
-        updateRequest.setId(categoryId);
+                                                 @PathVariable Long id) {
+        updateRequest.setId(id);
         categoryEventPort.updateCategory(updateRequest);
         return ResponseEntity.ok().body("수정 하였습니다.");
     }

@@ -1,7 +1,7 @@
 package com.orders.sir.event.product.dto;
 
 import com.orders.sir.event.category.adapter.out.CategoryEntity;
-import com.orders.sir.event.product.adapter.out.persistence.ProductDateEntity;
+import com.orders.sir.event.product.adapter.out.persistence.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,17 +22,17 @@ public class ProductDTO {
 
         private String productContext;
 
-        public ProductDateEntity toEntity() {
+        public ProductEntity toEntity() {
             CategoryEntity categoryEntity = CategoryEntity.builder()
                     .categoryCode(this.categoryCode)
                     .build();
 
-            return ProductDateEntity
+            return ProductEntity
                     .builder()
                     .productName(this.productName)
                     .productPrice(this.productPrice)
                     .productContext(this.productContext)
-                    .categoryEntity(categoryEntity)
+                    .categoryCode(categoryCode)
                     .build();
 
         }

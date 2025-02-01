@@ -1,5 +1,6 @@
 server:
-  port: 8080
+  port: 8081
+
 
 spring:
   thymeleaf:
@@ -35,7 +36,7 @@ spring:
         ddl-auto: update
         naming:
           physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    generate-ddl: false
+    generate-ddl: true
     open-in-view: false
     show-sql: true
 
