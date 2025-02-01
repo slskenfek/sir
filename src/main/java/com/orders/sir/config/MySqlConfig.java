@@ -1,3 +1,4 @@
+/*
 package com.orders.sir.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,3 +18,4 @@ public class MySqlConfig {
     }
 
 }
+*/

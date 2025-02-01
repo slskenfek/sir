@@ -40,13 +40,14 @@ spring:
     open-in-view: false
     show-sql: true
 
+
 logging:
-  level:
-    org:
-      hibernate:
-        type:
-          descriptor:
-            sql: trace #쿼리 ?값 확인
+    level:
+        org:
+            hibernate:
+                type:
+                    descriptor:
+                        sql: trace #쿼리 ?값 확인
 
 
 
