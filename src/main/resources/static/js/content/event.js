@@ -1,9 +1,12 @@
+
+
 function add_product() {
 
 
     const formData = {
          productName: document.getElementById('product_name').value,
-         productPrice: document.getElementById('product_price').value.replaceAll(",", "")
+         productPrice: document.getElementById('product_price').value.replaceAll(",", ""),
+         productContext : document.getElementById('product_context').value
      };
 
     $.ajax({
@@ -20,6 +23,10 @@ function add_product() {
             alert("실패 하였습니다")
         }
     });
+}
+
+function get_product() {
+
 }
 
 

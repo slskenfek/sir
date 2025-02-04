@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService implements ProductPort {
@@ -17,14 +19,15 @@ public class ProductService implements ProductPort {
     private final ProductLoadPort productLoadPort;
 
 
-    @AspectTargetActions
     @Override
     @Transactional
     public void addContent(ProductDTO.AddRequest request) {
-        try {
-            productLoadPort.addContent(request.toEntity());
-        } catch (Exception e) {
-            throw new ApiException(e.getMessage());
-        }
+        productLoadPort.addContent(request.toEntity());
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<ProductDTO.ResponseList> getContentList() {
+        return productLoadPort.getContentList();
     }
 }
